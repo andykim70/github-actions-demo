@@ -1,9 +1,21 @@
 name: GitHub Actions Demo
 
-# Trigger: Run this workflow whenever code is pushed to the main branch
 on:
+  # Allows manual triggering from the Actions tab (like GitLab "Run pipeline")
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Target environment'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+          - staging
+          - production
+
+  # Triggers on push to main or master
   push:
-    branches: [ "main" ]
+    branches: [ "main", "master" ]
 
 jobs:
   demo-job:

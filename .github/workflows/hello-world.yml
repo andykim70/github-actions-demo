@@ -1,0 +1,23 @@
+name: GitHub Actions Demo
+
+# Trigger: Run this workflow whenever code is pushed to the main branch
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  demo-job:
+    # Operating system for the virtual machine runner
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Print welcome message
+        run: echo "Hello, GitHub Actions!"
+
+      - name: Display environment info
+        run: |
+          echo "Triggered by event: ${{ github.event_name }}"
+          echo "Running on branch: ${{ github.ref_name }}"
